@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BIOLEAF - Premium Eco-Friendly Disposable Products</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #2d5a27;
+            --secondary-green: #4a7c59;
+            --accent-green: #7dad7a;
+            --light-green: #a8d5a8;
+            --cream: #f8f6f0;
+            --white: #ffffff;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-600: #666666;
+            --gray-800: #333333;
+            --orange: #ff6b35;
+            --red: #dc3545;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 25px rgba(0,0,0,0.15);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cream);
+            color: var(--gray-800);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--white) 50%, var(--light-green) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="leaf" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M10 2c4 0 6 4 6 8s-2 8-6 8-6-4-6-8 2-8 6-8z" fill="rgba(125,173,122,0.1)" stroke="rgba(125,173,122,0.2)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23leaf)"/></svg>') repeat;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+        }
+
+        /* Search Bar */
+        .search-section {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 50px;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 1.5rem;
+            color: var(--gray-600);
+            z-index: 2;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            font-family: inherit;
+            background: transparent;
+        }
+
+        .search-container input:focus {
+            box-shadow: 0 0 0 3px rgba(77, 124, 89, 0.1);
+        }
+
+        /* Products Section */
+        .products-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-green), var(--secondary-green));
+            border-radius: 2px;
+        }
+
+        .category {
+            margin-bottom: 4rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .category-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-right: 1rem;
+        }
+
+        .category-count {
+            background: var(--accent-green);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-image {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: var(--gray-100);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: white;
+            z-index: 2;
+        }
+
+        .badge.offer {
+            background: linear-gradient(45deg, var(--orange), #ff8c65);
+        }
+
+        .badge.bestseller {
+            background: linear-gradient(45deg, var(--primary-green), var(--secondary-green));
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin: 1rem 0;
+        }
+
+        .order-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: var(--transition);
+            margin-top: auto;
+        }
+
+        .order-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .coming-soon-card {
+            background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            position: relative;
+            opacity: 0.7;
+        }
+
+        .coming-soon-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+
+        .coming-soon-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .contact-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* Floating Support */
+        .floating-support {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-support a {
+            display: block;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+
+        .floating-support a:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-800);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--gray-600);
+            padding-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--gray-400);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Animation for cards */
+        .product-card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">🌿 BIOLEAF</div>
+                    <div class="tagline">Jahan Quality Ho, Wahan BioLeaf Ho</div>
+                </div>
+                <nav>
+                    <a href="home.html"><i class="fas fa-home"></i> Home</a>
+                    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+                    <a href="offers.html"><i class="fas fa-tags"></i> Offers</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Premium Eco-Friendly Disposables</h1>
+            <p>Sustainable tableware solutions for conscious consumers. Quality products that care for your business and our planet.</p>
+        </div>
+    </section>
+
+    <div class="search-section">
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search products, categories, or materials..." onkeyup="filterProducts()" />
+        </div>
+    </div>
+
+    <section class="products-section" id="productSection">
+
+        <div class="section-title">
+            <h2>Our Product Range</h2>
+        </div>
+
+        <div class="category">
+            <div class="category-header">
+                <h3><i class="fas fa-utensils"></i> Paper Plates (6-10 inch)</h3>
+                <span class="category-count">1 Available</span>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="badge offer">25% OFF</div>
+                    <div class="product-image">
+                        <img src="https://5.imimg.com/data5/SELLER/Default/2024/7/438032662/NL/LB/LH/713/plates-bagasse-250x250.jpg" alt="Sugarcane Bagasse 10 Inch Round Plate" />
+                    </div>
+                    <div class="product-info">
+                        <h4>Sugarcane Bagasse 10" Round Plates</h4>
+                        <div class="product-price">₹3.00 / piece</div>
+                        <a href="product3.html" class="order-btn">
+                            <i class="fas fa-shopping-cart"></i>
+                            Order Now
+                        </a>
+                    </div>
+                </div>
+                <div class="product-card coming-soon-card">
+                    <div class="badge bestseller">Bestseller</div>
+                    <div class="coming-soon-text">
+                        <i class="fas fa-clock"></i><br>
+                        Coming Soon
+                    </div>
+                </div>
+                <div class="product-card coming-soon-card">
+                    <div class="badge offer">65% OFF</div>
+                    <div class="coming-soon-text">
+                        <i class="fas fa-clock"></i><br>
+                        Coming Soon
+                    </div>
+                </div>
+                <div class="product-card coming-soon-card">
+                    <div class="coming-soon-text">
+                        <i class="fas fa-clock"></i><br>
+                        Coming Soon
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">
+                <h3><i class="fas fa-coffee"></i> Paper Cups (150ml - 410ml)</h3>
+                <span class="category-count">3 Available</span>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="badge offer">65% OFF</div>
+                    <div class="product-image">
+                        <img src="https://www.gujaratshopee.com/server/assets/uploads/admin/product/250-ml-8-oz-single-wall-white-paper-cup-1633936592-165.webp" alt="360 ML Single Wall White Paper Cup" />
+                    </div>
+                    <div class="product-info">
+                        <h4>360ML Single Wall White Paper Cup</h4>
+                        <div class="product-price">₹1.20 / piece</div>
+                        <a href="product1.html" class="order-btn">
+                            <i class="fas fa-shopping-cart"></i>
+                            Order Now
+                        </a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="badge offer">5% OFF</div>
+                    <div class="product-image">
+                        <img src="https://up.yimg.com/ib/th?id=OIP.zmhjy1UQKNVN8wf-sQ57sgAAAA&pid=Api&rs=1&c=1&qlt=95&w=121&h=121" alt="360 ML Single Wall Kraft Cup" />
+                    </div>
+                    <div class="product-info">
+                        <h4>360ML Single Wall Kraft Cup</h4>
+                        <div class="product-price">₹1.35 / piece</div>
+                        <a href="product4.html" class="order-btn">
+                            <i class="fas fa-shopping-cart"></i>
+                            Order Now
+                        </a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://tse1.mm.bing.net/th?id=OIP.vCSo_KgkzVmuR58AJwxvVAHaIA&pid=Api&P=0&h=180" alt="360 ML Brown Ripple Paper Cup" />
+                    </div>
+                    <div class="product-info">
+                        <h4>360ML Brown Ripple Paper Cup</h4>
+                        <div class="product-price">₹2.10 / piece</div>
+                        <a href="product5.html" class="order-btn">
+                            <i class="fas fa-shopping-cart"></i>
+                            Order Now
+                        </a>
+                    </div>
+                </div>
+                <div class="product-card coming-soon-card">
+                    <div class="badge bestseller">Bestseller</div>
+                    <div class="coming-soon-text">
+                        <i class="fas fa-clock"></i><br>
+                        Coming Soon
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">
+                <h3><i class="fas fa-bowl-food"></i> Paper Bowls (Small Size)</h3>
+                <span class="category-count">1 Available</span>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="badge offer">15% OFF</div>
+                    <div class="product-image">
+                        <img src="https://tse3.mm.bing.net/th?id=OIP.Vbd07ZexeA_YQGc-psWQ-QHaEK&pid=Api&P=0&h=180" alt="500 ML Paper Bowl" />
+                    </div>
+                    <div class="product-info">
+                        <h4>500ML Paper Bowl</h4>
+                        <div class="product-price">₹3.00 / piece</div>
+                        <a href="product2.html" class="order-btn">
+                            <i class="fas fa-shopping-cart"></i>
+                            Order Now
+                        </a>
+                    </div>
+                </div>
+                <div class="product-card coming-soon-card">
+                    <div class="coming-soon-text">
+                        <i class="fas fa-clock"></i><br>
+                        Coming Soon
+                    </div>
+                </div>
+                <div class="product-card coming-soon-card">
+                    <div class="coming-soon-text">
+                        <i class="fas fa-clock"></i><br>
+                        Coming Soon
+                    </div>
+                </div>
+                <div class="product-card coming-soon-card">
+                    <div class="coming-soon-text">
+                        <i class="fas fa-clock"></i><br>
+                        Coming Soon
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">
+                <h3><i class="fas fa-utensils"></i> Wooden Cutlery (Biodegradable)</h3>
+                <span class="category-count">1 Available</span>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="badge offer">13% OFF</div>
+                    <div class="product-image">
+                        <img src="https://m.media-amazon.com/images/I/4108o+e9+cL._SX679_.jpg
+" alt="Wooden Spoons & Forks Combo Pack" />
+                    </div>
+                    <div class="product-info">
+                        <h4>Wooden Spoons & Forks Combo Pack (50pcs)</h4>
+                        <div class="product-price">₹90.00 / pack</div>
+                        <a href="product6.html" class="order-btn">
+                            <i class="fas fa-shopping-cart"></i>
+                            Order Now
+                        </a>
+                    </div>
+                </div>
+                <div class="product-card coming-soon-card">
+                    <div class="coming-soon-text">
+                        <i class="fas fa-clock"></i><br>
+                        Coming Soon
+                    </div>
+                </div>
+                <div class="product-card coming-soon-card">
+                    <div class="coming-soon-text">
+                        <i class="fas fa-clock"></i><br>
+                        Coming Soon
+                    </div>
+                </div>
+                <div class="product-card coming-soon-card">
+                    <div class="coming-soon-text">
+                        <i class="fas fa-clock"></i><br>
+                        Coming Soon
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <h2>Ready to Order?</h2>
+        <p>Get in touch with us for bulk orders and custom requirements</p>
+        <div class="contact-buttons">
+            <a href="tel:7393060736" class="contact-btn">
+                <i class="fas fa-phone"></i>
+                Call 7393060736
+            </a>
+            <a href="https://wa.me/917393060736" target="_blank" class="contact-btn">
+                <i class="fab fa-whatsapp"></i>
+                WhatsApp Us
+            </a>
+        </div>
+    </section>
+
+    <div class="floating-support">
+        <a href="https://wa.me/917393060736?text=HELLO%20BIOLEAF%20CUSTOMER%20SUPPORT" target="_blank" aria-label="Customer Support WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Return & Refund</a>
+               
+           
+            </div>
+            <div class="footer-bottom">
+                <p><strong>© 2025 BIOLEAF.</strong> All rights reserved.</p>
+              
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function filterProducts() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.product-card');
+            const categories = document.querySelectorAll('.category');
+            
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                const isVisible = text.includes(input);
+                card.style.display = isVisible ? 'block' : 'none';
+            });
+            
+            // Hide categories with no visible products
+            categories.forEach(category => {
+                const visibleCards = category.querySelectorAll('.product-card[style="display: block"], .product-card:not([style*="display: none"])');
+                category.style.display = visibleCards.length > 0 ? 'block' : 'none';
+            });
+        }
+
+        // Add smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+<div style="background: linear-gradient(135deg, #f6f9fc, #c2f0c2); padding: 1.5rem 1rem; text-align: center; font-weight: 600; font-size: 1rem; color: #1b3e2a; font-family: 'Inter', sans-serif; box-shadow: 0 -2px 12px rgba(0,0,0,0.08); border-radius: 12px;">
+ <div class="product-price"><ul>-- P r o m o t i o n --</ul></div>  
+  <b>Website designed by ✪ H A R S H ✪</b><br>
+
+👇     👇     👇  <br></br>
+    📞 Contact: 
+    <a href="https://wa.me/918090952832?text=Hi%20Harsh!%20I%20loved%20your%20website%20work%20and%20want%20to%20get%20one%20built.%20Can%20you%20share%20more%20details?" 
+       style="color: #0e4526; text-decoration: underline;">
+       8090952832
+    </a><br><br>
+✨ <b>Your brand deserves a website like this.</b><br>
+    🚀 <b>Let’s build your online success together.</b><br>
+    🔥 <b>If this impressed you, imagine what I can do for <u>your</u> brand.</b><br><br>
+
+    <a href="https://wa.me/918090952832?text=Hi%20Harsh!%20I%20loved%20your%20website%20work%20and%20want%20to%20get%20one%20built.%20Can%20you%20share%20more%20details?" 
+       style="background: linear-gradient(90deg, #1cb968, #17994e); color: #fff; padding: 12px 22px; border-radius: 10px; text-decoration: none; display: inline-block; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s;">
+       📩 Click here to get your own  website on WhatsApp
+    </a>
+</div>
+</body>
+</html>

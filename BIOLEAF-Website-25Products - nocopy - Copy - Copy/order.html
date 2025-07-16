@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Place Your Order - BIOLEAF</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 80%, rgba(120, 180, 80, 0.3) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(120, 255, 120, 0.3) 0%, transparent 50%),
+                  radial-gradient(circle at 40% 40%, rgba(75, 175, 75, 0.2) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .floating-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .shape:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .shape:nth-child(2) {
+      width: 120px;
+      height: 120px;
+      top: 60%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+
+    .shape:nth-child(3) {
+      width: 60px;
+      height: 60px;
+      bottom: 20%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+      position: relative;
+      animation: slideUp 0.8s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .header {
+      background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    .header h1 {
+      color: white;
+      font-size: 2.5em;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .header p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.1em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-container {
+      padding: 40px 30px;
+    }
+
+    .product-info {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-info::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #4caf50, #45a049, #4caf50);
+      background-size: 200% 100%;
+      animation: shimmer 2s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .product-info h3 {
+      color: #333;
+      margin-bottom: 15px;
+      font-size: 1.3em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .product-detail {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .product-detail:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .product-detail strong {
+      color: #555;
+      font-weight: 600;
+    }
+
+    .product-detail span {
+      color: #4caf50;
+      font-weight: 700;
+      font-size: 1.1em;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 16px 20px;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      font-size: 1em;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.9);
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #4caf50;
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.2em;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .submit-btn:hover::before {
+      left: 100%;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
+    }
+
+    .submit-btn:active {
+      transform: translateY(-1px);
+    }
+
+    .upi-section {
+      display: none;
+      text-align: center;
+      padding: 30px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 20px;
+      margin-top: 20px;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .upi-section img {
+      max-width: 300px;
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .upi-section img:hover {
+      transform: scale(1.05);
+    }
+
+    .upi-message {
+      font-size: 1.2em;
+      color: #4caf50;
+      font-weight: 600;
+      margin: 15px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .upi-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 25px;
+    }
+
+    .upi-buttons button {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 120px;
+    }
+
+    .upi-yes {
+      background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+      color: white;
+    }
+
+    .upi-no {
+      background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+      color: white;
+    }
+
+    .upi-buttons button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .confirmation {
+      display: none;
+      background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+      color: #155724;
+      padding: 30px;
+      border-radius: 16px;
+      margin-top: 20px;
+      text-align: center;
+      border: 1px solid #c3e6cb;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .confirmation h3 {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .whatsapp-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25d366;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .whatsapp-link:hover {
+      background: #128c7e;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    .note {
+      background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+      color: #721c24;
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+      border: 1px solid #f5c6cb;
+      font-size: 0.95em;
+      line-height: 1.6;
+    }
+
+    .note strong {
+      color: #721c24;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #4caf50;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 15px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 10px;
+        border-radius: 16px;
+      }
+      
+      .header {
+        padding: 30px 20px;
+      }
+      
+      .header h1 {
+        font-size: 2em;
+      }
+      
+      .form-container {
+        padding: 30px 20px;
+      }
+      
+      .upi-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .upi-buttons button {
+        width: 100%;
+        max-width: 200px;
+      }
+    }
+
+    .success-animation {
+      animation: successPulse 0.6s ease-out;
+    }
+
+    @keyframes successPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <h1><i class="fas fa-leaf"></i> BIOLEAF</h1>
+      <p>Premium Natural Products</p>
+    </div>
+
+
+    <!-- 🎁 Stylish Discount Banner Starts -->
+<div style="background-color: #ffe6e6; color: #cc0000; padding: 18px; text-align: center; border: 2px dashed #ff4d4d; border-radius: 12px; font-family: 'Segoe UI', sans-serif; font-weight: bold; font-size: 18px; margin: 20px auto; max-width: 700px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+  🎁 <span style="font-size: 20px; color: #d80000;">First Online Order Offer!</span><br><br>
+  Use Code <span style="background: #ffcccc; padding: 6px 12px; border-radius: 6px; font-size: 20px;">HARSH10</span> and get <span style="color: #b30000;">up to 10% OFF</span> 🎉 on your first online order.<br><br>
+  📩 Send your order slip along with this code on <strong>WhatsApp</strong> to claim your discount 🎁
+</div>
+<!-- 🎁 Stylish Discount Banner Ends -->
+
+    
+    <div class="form-container">
+      <div class="product-info">
+        <h3><i class="fas fa-box"></i> Order Summary</h3>
+        <div class="product-detail">
+          <strong>Product:</strong>
+          <span id="productName">Loading...</span>
+        </div>
+        <div class="product-detail">
+          <strong>Quantity:</strong>
+          <span id="productQty">Loading...</span>
+        </div>
+      </div>
+
+
+      <form id="orderForm">
+        <div class="form-group">
+          <label for="name">
+            <i class="fas fa-user"></i>
+            Your Name
+          </label>
+          <input type="text" id="name" name="name" required placeholder="Enter your full name" />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">
+            <i class="fas fa-phone"></i>
+            Phone Number
+          </label>
+          <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" placeholder="Enter 10 digit phone number" />
+        </div>
+
+        <div class="form-group">
+          <label for="address">
+            <i class="fas fa-map-marker-alt"></i>
+            Delivery Address
+          </label>
+          <textarea id="address" name="address" rows="4" required placeholder="Enter your complete delivery address"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="payment">
+            <i class="fas fa-credit-card"></i>
+            Payment Method
+          </label>
+          <select id="payment" name="payment" required>
+            <option value="">Choose payment method</option>
+            <option value="COD"> Cash on Delivery (COD)</option>
+            <option value="UPI"> UPI Payment</option>
+          </select>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <i class="fas fa-shopping-cart"></i>
+          Confirm Order
+        </button>
+      </form>
+
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Processing your order...</p>
+      </div>
+
+      <div id="upiSection" class="upi-section">
+        <img src="https://cdn.corenexis.com/i/d/ju17/daOfLj.jpg?token=46a99cdeff6e6859e94f2220e3057af0" alt="UPI Payment QR Code" />
+        <div class="upi-message">
+          <i class="fas fa-shield-alt"></i>
+          Don't worry, your money is in safe hands ðŸ˜Š
+        </div>
+        <div class="upi-message">
+          <i class="fas fa-check-circle"></i>
+          Payment Successful?
+        </div>
+        <div class="upi-buttons">
+          <button id="upiYes" class="upi-yes">
+            <i class="fas fa-check"></i>
+            Yes, Paid
+          </button>
+          <button id="upiNo" class="upi-no">
+            <i class="fas fa-times"></i>
+            Not Yet
+          </button>
+        </div>
+      </div>
+
+      <div id="confirmationMessage" class="confirmation">
+        <h3>
+          <i class="fas fa-check-circle"></i>
+          Order Placed Successfully!
+        </h3>
+        <p>Thank you for your order. Please contact us on WhatsApp to confirm your order details.</p>
+        <a href="#" id="whatsappLink" class="whatsapp-link" target="_blank">
+          <i class="fab fa-whatsapp"></i>
+          Contact on WhatsApp
+        </a>
+        
+        <div class="note">
+          <strong><i class="fas fa-exclamation-triangle"></i> Important Note:</strong><br>
+          If you have filled the form but did not contact us on WhatsApp, your order will <strong>NOT</strong> be confirmed.<br>
+          Contacting us on WhatsApp is <em>mandatory</em> to complete your order.
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  function getQueryParams() {
+    const params = {};
+    location.search.substr(1).split("&").forEach(function (item) {
+      const pair = item.split("=");
+      if (pair[0] && pair[1]) {
+        params[pair[0]] = decodeURIComponent(pair[1]);
+      }
+    });
+    return params;
+  }
+
+  const params = getQueryParams();
+  document.getElementById('productName').textContent = params.product || 'N/A';
+  document.getElementById('productQty').textContent = params.quantity || 'N/A';
+
+  const form = document.getElementById('orderForm');
+  const confirmationDiv = document.getElementById('confirmationMessage');
+  const upiSection = document.getElementById('upiSection');
+  const upiYesBtn = document.getElementById('upiYes');
+  const upiNoBtn = document.getElementById('upiNo');
+  const loading = document.getElementById('loading');
+  const whatsappLink = document.getElementById('whatsappLink');
+
+  let orderData = {};
+
+  // Form validation with real-time feedback
+  const inputs = form.querySelectorAll('input, textarea, select');
+  inputs.forEach(input => {
+    input.addEventListener('blur', validateField);
+    input.addEventListener('input', clearErrors);
+  });
+
+  function validateField(e) {
+    const field = e.target;
+    const value = field.value.trim();
+    
+    // Remove existing error styling
+    field.style.borderColor = '#e0e0e0';
+    
+    if (!value && field.required) {
+      field.style.borderColor = '#f44336';
+      return false;
+    }
+    
+    if (field.type === 'tel' && value && !/^[0-9]{10}$/.test(value)) {
+      field.style.borderColor = '#f44336';
+      return false;
+    }
+    
+    field.style.borderColor = '#4caf50';
+    return true;
+  }
+
+  function clearErrors(e) {
+    e.target.style.borderColor = '#e0e0e0';
+  }
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Validate all fields
+    let isValid = true;
+    inputs.forEach(input => {
+      if (!validateField({target: input})) {
+        isValid = false;
+      }
+    });
+
+    if (!isValid) {
+      showAlert('Please fill all fields correctly.', 'error');
+      return;
+    }
+
+    // Show loading
+    loading.style.display = 'block';
+    form.style.display = 'none';
+
+    // Simulate processing delay
+    setTimeout(() => {
+      const name = form.name.value.trim();
+      const phone = form.phone.value.trim();
+      const address = form.address.value.trim();
+      const product = params.product || '';
+      const quantity = params.quantity || '';
+      const payment = form.payment.value;
+
+      orderData = {
+        name, phone, address, product, quantity, payment
+      };
+
+      const message = `🌿 BIOLEAF - New Order Received 🌿
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 ORDER SUMMARY
+• Product: ${product}
+• Quantity: ${quantity} ${quantity > 1 ? 'items' : 'item'}
+
+👤 CUSTOMER INFORMATION
+• Name: ${name}
+• Phone: ${phone}
+• Delivery Address: ${address}
+
+💳 PAYMENT METHOD
+• ${payment}
+
+📊 ORDER STATUS
+• Status: ⏳ Pending Confirmation
+• Order ID: #${Date.now().toString().slice(-6)}
+• Date: ${new Date().toLocaleDateString()}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Thank you for choosing BIOLEAF! 🌱
+We'll confirm your order shortly.`;
+
+loading.style.display = 'none';
+      if (payment === 'COD') {
+        showConfirmation(message);
+      } else if (payment === 'UPI') {
+        upiSection.style.display = 'block';
+        orderData.message = message;
+      }
+    }, 1500);
+  });
+
+  upiYesBtn.addEventListener('click', function() {
+    upiSection.style.display = 'none';
+    const message = orderData.message.replace('Pending Confirmation', 'UPI Payment Completed âœ…');
+    showConfirmation(message);
+  });
+
+  upiNoBtn.addEventListener('click', function() {
+    showAlert('Please complete the UPI payment before proceeding.', 'warning');
+  });
+
+  function showConfirmation(message) {
+    confirmationDiv.style.display = 'block';
+    confirmationDiv.classList.add('success-animation');
+    
+    const whatsappUrl = `https://wa.me/7393060736?text=${message}`;
+    whatsappLink.href = whatsappUrl;
+    
+    // Auto-open WhatsApp after a brief delay
+    setTimeout(() => {
+      window.open(whatsappUrl, '_blank');
+    }, 1000);
+  }
+
+  function showAlert(message, type) {
+    const alertDiv = document.createElement('div');
+    alertDiv.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 20px;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      z-index: 1000;
+      animation: slideInRight 0.3s ease-out;
+      max-width: 300px;
+    `;
+    
+    if (type === 'error') {
+      alertDiv.style.background = 'linear-gradient(135deg, #f44336 0%, #d32f2f 100%)';
+    } else if (type === 'warning') {
+      alertDiv.style.background = 'linear-gradient(135deg, #ff9800 0%, #f57c00 100%)';
+    }
+    
+    alertDiv.textContent = message;
+    document.body.appendChild(alertDiv);
+    
+    setTimeout(() => {
+      alertDiv.remove();
+    }, 4000);
+  }
+
+  // Add some loading animation to product info
+  setTimeout(() => {
+    const productInfo = document.querySelector('.product-info');
+    productInfo.classList.add('success-animation');
+  }, 500);
+</script>
+
+</body>
+</html>
